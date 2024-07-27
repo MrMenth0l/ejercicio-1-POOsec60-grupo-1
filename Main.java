@@ -1,12 +1,17 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Scanner;
-
+import java.io.File;
 
 
 class Main {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws IOException {
+
+        export_csv exportador = new export_csv();
+        exportador.exportData("Nombre, Telefono, Cantidad de Tickets,Precio, Numero de ticket");
         var i = 0;
         Localidad localidad1 = new Localidad();
         localidad1.setPrecio(1);
@@ -85,7 +90,7 @@ class Main {
                             + "\nSu numero de compra: " + Num_compra
                             + "\nLa compra fue realizada el: " + compra.getFecha()
                             + "\nSu numero de ticket: " + Num_ticket);
-
+                    exportador.exportData(comprador.getNombre_Compra() + "," + comprador.getTelefono() + "," + comprador.getCant_boletos() + "," + compra.getPrecio() + "," + Num_ticket);
                     break;
                 case 2:
                     System.out.println("la disponibilidad total es: " + (localidad10.getEspacio()+localidad5.getEspacio()+ localidad1.getEspacio()) + " boletos en el estadio");
