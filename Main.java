@@ -86,16 +86,24 @@ class Main {
                             + "\nLa compra fue realizada el: " + compra.getFecha()
                             + "\nSu numero de ticket: " + Num_ticket);
 
-
+                    break;
                 case 2:
                     System.out.println("la disponibilidad total es: " + (localidad10.getEspacio()+localidad5.getEspacio()+ localidad1.getEspacio()) + " boletos en el estadio");
+                    break;
                 case 3:
                     System.out.println("La disponibilidad por seccion : "
                             + "\nSeccion 1: " + localidad1.getEspacio() + " boletos disponibles"
                             + "\nSeccion 5: " + localidad5.getEspacio() + " boletos disponibles"
                             + "\nSeccion 10: " + localidad10.getEspacio() + " boletos disponibles");
+                    break;
                 case 4:
                     System.out.println("En la caja hay un total de: " + caja.getTotal());
+                    break;
+                case 5:
+                    return;
+                default:
+                    System.out.println("Ingrese una opcion valida");
+                    break;
 
             }
         }
