@@ -2,18 +2,14 @@ import java.util.Date;
 
 public class Compra
 {
-    private String Nombre_Compra;
-    private String Telefono;
+    private Comprador Comprador;
     private Date Fecha;
     private Localidad Tipo;
-    private int Cant_boletos;
+    private int Precio;
 
 
-    public void setNombre_Compra(String nombre_Compra) {Nombre_Compra = nombre_Compra;}
-    public String getNombre_Compra() {return Nombre_Compra;}
-
-    public void setTelefono(String telefono) {Telefono = telefono;}
-    public String getTelefono() {return Telefono;}
+    public void setComprador(Comprador comprador) {Comprador = comprador;}
+    public Comprador getComprador() {return Comprador;}
 
     public void setFecha(Date fecha) {Fecha = fecha;}
     public Date getFecha() {return Fecha;}
@@ -21,6 +17,6 @@ public class Compra
     public void setTipo(Localidad tipo) {Tipo = tipo;}
     public Localidad getTipo() {return Tipo;}
 
-    public void setCant_boletos(int cant_boletos) {Cant_boletos = cant_boletos;}
-    public int getCant_boletos() {return Cant_boletos;}
+    public void setPrecio(int precio) {Precio = precio;}
+    public int getPrecio() {return getTipo().getPrecio()*getComprador().getCant_boletos();}
 }
