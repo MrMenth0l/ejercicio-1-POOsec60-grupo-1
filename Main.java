@@ -11,7 +11,6 @@ class Main {
     public static void main(String[] args) throws IOException {
 
         export_csv exportador = new export_csv();
-        exportador.exportData("Nombre, Telefono, Cantidad de Tickets,Precio, Numero de ticket");
         var i = 0;
         Localidad localidad1 = new Localidad();
         localidad1.setPrecio(1);
@@ -51,24 +50,39 @@ class Main {
                     System.out.println("Que localidad: \n1. Localidad 1 (250$) \n2. Localidad 5 (575$) \n3. Localidad 10 (1720)");
                     switch (sc.nextInt()){
                         case 1:
-                            if (localidad1.getEspacio()> comprador.getCant_boletos()){
-                                compra.setTipo(localidad1);
-                                localidad1.setEspacio(localidad1.getEspacio() - comprador.getCant_boletos());
-                                if (compra.getPrecio() > comprador.getPresupuesto()){System.out.println("Estan muy caras bro :("); return;}
+                            if (localidad1.getEspacio()> 0){
+                                if (localidad1.getEspacio()> comprador.getCant_boletos()){
+                                    compra.setTipo(localidad1);
+                                    localidad1.setEspacio(localidad1.getEspacio() - comprador.getCant_boletos());
+                                    if (compra.getPrecio() > comprador.getPresupuesto()){System.out.println("Estan muy caras bro :("); return;}
+                                }
+                                else{System.out.println("Solo hay " + localidad1.getEspacio() + " boletos disponibles. Desea comprar los boletos restantes? 1. Si 2. No");
+                                    switch (sc.nextInt()) {case 1: comprador.setCant_boletos(localidad1.getEspacio());compra.setTipo(localidad1);localidad1.setEspacio(localidad1.getEspacio() - comprador.getCant_boletos());if (compra.getPrecio() > comprador.getPresupuesto()) {System.out.println("Estan muy caras bro :(");return;}break; case 2: System.out.println("Gracias por usar el programa, feliz dia");return; default: System.out.println("Ingrese una opcion valida");break;}
+                                }
                             } else {System.out.println("No hay disponibilidad en esta seccion"); return;}
                             break;
                         case 2:
-                            if (localidad5.getEspacio()> comprador.getCant_boletos()){
-                                compra.setTipo(localidad5);
-                                localidad5.setEspacio(localidad5.getEspacio() - comprador.getCant_boletos());
-                                if (compra.getPrecio() > comprador.getPresupuesto()){System.out.println("Estan muy caras bro :("); return;}
+                            if (localidad5.getEspacio()> 0){
+                                if (localidad5.getEspacio()> comprador.getCant_boletos()){
+                                    compra.setTipo(localidad5);
+                                    localidad5.setEspacio(localidad5.getEspacio() - comprador.getCant_boletos());
+                                    if (compra.getPrecio() > comprador.getPresupuesto()){System.out.println("Estan muy caras bro :("); return;}
+                                }
+                                else{System.out.println("Solo hay " + localidad5.getEspacio() + " boletos disponibles. Desea comprar los boletos restantes? 1. Si 2. No");
+                                    switch (sc.nextInt()) {case 1: comprador.setCant_boletos(localidad5.getEspacio());compra.setTipo(localidad5);localidad5.setEspacio(localidad5.getEspacio() - comprador.getCant_boletos());if (compra.getPrecio() > comprador.getPresupuesto()) {System.out.println("Estan muy caras bro :(");return;}break; case 2: System.out.println("Gracias por usar el programa, feliz dia");return; default: System.out.println("Ingrese una opcion valida");break;}
+                                }
                             } else {System.out.println("No hay disponibilidad en esta seccion"); return;}
                             break;
                         case 3:
-                            if (localidad10.getEspacio()> comprador.getCant_boletos()){
-                                compra.setTipo(localidad10);
-                                localidad10.setEspacio(localidad10.getEspacio() - comprador.getCant_boletos());
-                                if (compra.getPrecio() > comprador.getPresupuesto()){System.out.println("Estan muy caras bro :("); return;}
+                            if (localidad10.getEspacio()> 0){
+                                if (localidad10.getEspacio()> comprador.getCant_boletos()){
+                                    compra.setTipo(localidad10);
+                                    localidad10.setEspacio(localidad10.getEspacio() - comprador.getCant_boletos());
+                                    if (compra.getPrecio() > comprador.getPresupuesto()){System.out.println("Estan muy caras bro :("); return;}
+                                }
+                                else{System.out.println("Solo hay " + localidad10.getEspacio() + " boletos disponibles. Desea comprar los boletos restantes? 1. Si 2. No");
+                                    switch (sc.nextInt()) {case 1: comprador.setCant_boletos(localidad10.getEspacio());compra.setTipo(localidad10);localidad10.setEspacio(localidad10.getEspacio() - comprador.getCant_boletos());if (compra.getPrecio() > comprador.getPresupuesto()) {System.out.println("Estan muy caras bro :(");return;}break; case 2: System.out.println("Gracias por usar el programa, feliz dia");return; default: System.out.println("Ingrese una opcion valida");break;}
+                                }
                             } else {System.out.println("No hay disponibilidad en esta seccion"); return;}
                             break;
                         default:
@@ -86,11 +100,11 @@ class Main {
                             + "\nNombre: " + comprador.getNombre_Compra()
                             + "\nTelefono:" + comprador.getTelefono()
                             + "\nCantidad de boletos: " + comprador.getCant_boletos()
-                            + "\nPrecio: " + compra.getPrecio()
+                            + "\nPrecio: " + compra.getPrecio() + "$"
                             + "\nSu numero de compra: " + Num_compra
                             + "\nLa compra fue realizada el: " + compra.getFecha()
                             + "\nSu numero de ticket: " + Num_ticket);
-                    exportador.exportData(comprador.getNombre_Compra() + "," + comprador.getTelefono() + "," + comprador.getCant_boletos() + "," + compra.getPrecio() + "," + Num_ticket);
+                    exportador.exportData(comprador.getNombre_Compra() + "," + comprador.getTelefono() + "," + comprador.getCant_boletos() + "," + compra.getPrecio() + "," + Num_ticket +  "," + compra.getFecha());
                     break;
                 case 2:
                     System.out.println("la disponibilidad total es: " + (localidad10.getEspacio()+localidad5.getEspacio()+ localidad1.getEspacio()) + " boletos en el estadio");
